@@ -1,20 +1,25 @@
 package com.example.ebooks_admin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 import android.widget.AdapterView;
 
 
 public class AdminAddDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button cnl, AddBtn, ClearBtn;
+
+    //background Animation
+    ConstraintLayout constraintLayout;
+    AnimationDrawable animationDrawable ;
 
     //spinner arrays
     String[] bookCategory = {"",
@@ -81,6 +86,7 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
             }
         });
 
+
         //category spinner
         Spinner spinner = (Spinner) findViewById(R.id.category);
         spinner.setOnItemSelectedListener(this);
@@ -94,6 +100,15 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
         ArrayAdapter ArrLang = new ArrayAdapter(this, android.R.layout.simple_spinner_item, language);
         ArrLang.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner1.setAdapter(ArrLang);
+
+
+        //background Animation
+        constraintLayout = (ConstraintLayout) findViewById(R.id.addDetailsLayout);
+        animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(4500);
+        animationDrawable.start();
+
     }
 
 

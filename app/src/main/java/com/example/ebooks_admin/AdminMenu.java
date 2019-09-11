@@ -1,13 +1,19 @@
 package com.example.ebooks_admin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class AdminMenu extends AppCompatActivity {
+
+    //background Animation
+    CoordinatorLayout coordinatorLayout;
+    AnimationDrawable animationDrawable ;
 
     private Button Add, Logout;
 
@@ -33,6 +39,15 @@ public class AdminMenu extends AppCompatActivity {
                 openAdminPanel();
             }
         });
+
+
+        //background Animation
+        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.menuLayout);
+        animationDrawable = (AnimationDrawable) coordinatorLayout.getBackground();
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(4500);
+        animationDrawable.start();
+
     }
 
     //add method

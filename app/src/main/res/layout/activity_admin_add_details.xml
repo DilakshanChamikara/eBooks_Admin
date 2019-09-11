@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/root_calling_gradient"
+    android:id="@+id/addDetailsLayout"
     tools:context=".AdminAddDetails">
 
     <TextView
@@ -118,7 +120,7 @@
                     android:textSize="18dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="3dp"
                     android:text="Auther/s : " />
 
                 <EditText
@@ -349,7 +351,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="right">
 
                     <Button
                         android:id="@+id/sltadd"
@@ -359,6 +362,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
+                        android:textAlignment="center"
                         android:background="#000000"
                         android:paddingLeft="50px"
                         android:text="ADD RECORD"
@@ -373,7 +377,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:gravity="right">
 
                     <Button
                         android:id="@+id/cancel"
@@ -381,7 +386,7 @@
                         android:layout_height="56dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="6dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_marginEnd="12dp"
                         android:layout_marginBottom="16dp"
                         android:background="@drawable/my_button_add"
                         android:text="CANCEL"

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fcfcfc"
+    android:id="@+id/loginLayout"
     tools:context=".AdminLogin">
 
     <androidx.core.widget.NestedScrollView
@@ -51,7 +53,7 @@
 
                     <EditText
                         android:id="@+id/uName"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="10dp"
@@ -83,11 +85,10 @@
 
                     <EditText
                         android:id="@+id/pwd"
-                        android:layout_width="220dp"
+                        android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="12dp"
-                        android:layout_marginEnd="8dp"
                         android:background="@drawable/edit_text_background"
                         android:ems="10"
                         android:inputType="textPassword"
@@ -101,7 +102,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="115dp"
+                    android:gravity="right"
                     android:orientation="horizontal">
 
 
@@ -123,7 +124,7 @@
                         android:layout_height="56dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="20dp"
-                        android:layout_marginEnd="20dp"
+                        android:layout_marginEnd="0dp"
                         android:layout_marginBottom="10dp"
                         android:background="#000000"
                         android:text="LOGIN"
