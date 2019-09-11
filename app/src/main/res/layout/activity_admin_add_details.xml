@@ -157,6 +157,7 @@
                     android:layout_height="69dp"
                     android:paddingLeft="30px"
                     android:paddingRight="30px"
+
                     android:spinnerMode="dropdown"/>
             </LinearLayout>
 
@@ -276,32 +277,6 @@
                     android:paddingRight="30px"
                     android:textCursorDrawable="@drawable/color_cursor"
                     android:background="@drawable/edit_text_background2"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/edit_text_background">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="60dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0"
-                    android:textSize="18dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="22dp"
-                    android:text="Tags : " />
-
-                <Spinner
-                    android:id="@+id/tags"
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:paddingLeft="30px"
-                    android:paddingRight="30px" />
             </LinearLayout>
 
             <LinearLayout

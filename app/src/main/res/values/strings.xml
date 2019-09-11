@@ -1,15 +1,4 @@
 <resources>
     <string name="app_name">eBooks Admin</string>
 
-    <string-array name="android_dropdown_arrays">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
-    </string-array>
-
 </resources>
