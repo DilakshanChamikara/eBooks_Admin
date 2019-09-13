@@ -117,8 +117,8 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
         String category = CATEGORY.getSelectedItem().toString();
         String lang = LANG.getSelectedItem().toString();
 
-        if(TextUtils.isEmpty(isbn) && TextUtils.isEmpty(title) && TextUtils.isEmpty(auther) && TextUtils.isEmpty(size) && TextUtils.isEmpty(intro) &&
-                TextUtils.isEmpty(rPrice) && TextUtils.isEmpty(fPrice) && TextUtils.isEmpty(category) && TextUtils.isEmpty(lang)){
+        if(TextUtils.isEmpty(isbn) || TextUtils.isEmpty(title) || TextUtils.isEmpty(auther) || TextUtils.isEmpty(size) || TextUtils.isEmpty(intro) ||
+                TextUtils.isEmpty(rPrice) || TextUtils.isEmpty(fPrice) || TextUtils.isEmpty(category) || TextUtils.isEmpty(lang)){
 
 
             Toast.makeText(this, "Please fill the all fields.", Toast.LENGTH_LONG).show();
@@ -129,6 +129,7 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
             AddRecord books = new AddRecord(isbn, title, auther, size, intro, rPrice, fPrice, category, lang);
             DbRefAdmin.child(id).setValue(books);
             Toast.makeText(this, "Book is Successfully added.", Toast.LENGTH_LONG).show();
+            clearForm();
         }
     }
 
