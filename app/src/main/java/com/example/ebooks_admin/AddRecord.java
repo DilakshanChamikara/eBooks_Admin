@@ -2,7 +2,7 @@ package com.example.ebooks_admin;
 
 public class AddRecord {
 
-    String BookNo, BookTitle, Auther, Size, Intro, RentPrice, FullPrice, Category, Language;
+    private String BookNo, BookTitle, Auther, Size, Intro, RentPrice, FullPrice, Category, Language;
 
     //default constructor
     public AddRecord(){
@@ -59,5 +59,4 @@ public class AddRecord {
         return Language;
     }
 
-    
 }
