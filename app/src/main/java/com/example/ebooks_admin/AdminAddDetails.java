@@ -6,12 +6,17 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class AdminAddDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -19,6 +24,8 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
     private Button cnl, AddBtn, ClearBtn;
     private EditText ISBN, TITLE, AUTHER, SIZE, INTRO, RPrice, FPrice;
     private Spinner CATEGORY, LANG;
+
+    DatabaseReference DbRefAdmin;
 
     //background Animation
     ConstraintLayout constraintLayout;
@@ -35,6 +42,9 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_add_details);
+
+        //db
+        DbRefAdmin = FirebaseDatabase.getInstance().getReference("books");
 
         //find Ids
         ISBN = (EditText) findViewById(R.id.isbn);
@@ -54,7 +64,7 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
         AddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                addRecord();
             }
         });
 
@@ -106,6 +116,20 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
 
         String category = CATEGORY.getSelectedItem().toString();
         String lang = LANG.getSelectedItem().toString();
+
+        if(TextUtils.isEmpty(isbn) && TextUtils.isEmpty(title) && TextUtils.isEmpty(auther) && TextUtils.isEmpty(size) && TextUtils.isEmpty(intro) &&
+                TextUtils.isEmpty(rPrice) && TextUtils.isEmpty(fPrice) && TextUtils.isEmpty(category) && TextUtils.isEmpty(lang)){
+
+
+            Toast.makeText(this, "Please fill the all fields.", Toast.LENGTH_LONG).show();
+
+        }else {
+
+            String id = DbRefAdmin.push().getKey();
+            AddRecord books = new AddRecord(isbn, title, auther, size, intro, rPrice, fPrice, category, lang);
+            DbRefAdmin.child(id).setValue(books);
+            Toast.makeText(this, "Book is Successfully added.", Toast.LENGTH_LONG).show();
+        }
     }
 
 
