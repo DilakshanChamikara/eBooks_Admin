@@ -15,7 +15,7 @@ public class AdminMenu extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     AnimationDrawable animationDrawable ;
 
-    private Button Add, Logout;
+    private Button Add, Logout, Delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,15 @@ public class AdminMenu extends AppCompatActivity {
             }
         });
 
+        //For Delete Button
+        Delete = (Button) findViewById(R.id.sltdelete);
+        Delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDeleteDetails();
+            }
+        });
+
 
         //background Animation
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.menuLayout);
@@ -50,16 +59,21 @@ public class AdminMenu extends AppCompatActivity {
 
     }
 
-    //add method
+    //add function
     public void openAddDetails(){
         Intent intent = new Intent(this, AdminAddDetails.class);
         startActivity(intent);
     }
 
-
-    //logout method
+    //logout function
     public void openAdminPanel(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    //delete function
+    public void openDeleteDetails(){
+        Intent intent = new Intent(this, AdminDeleteDetails.class);
         startActivity(intent);
     }
 }
