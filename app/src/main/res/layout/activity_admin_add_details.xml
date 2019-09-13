@@ -157,10 +157,11 @@
                     android:id="@+id/category"
                     android:layout_width="match_parent"
                     android:layout_height="69dp"
+                    android:entries="@array/bookCategory"
                     android:paddingLeft="30px"
-                    android:paddingRight="30px"
 
-                    android:spinnerMode="dropdown"/>
+                    android:paddingRight="30px"
+                    android:spinnerMode="dropdown" />
             </LinearLayout>
 
             <LinearLayout

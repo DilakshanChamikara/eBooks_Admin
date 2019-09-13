@@ -21,42 +21,7 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
     ConstraintLayout constraintLayout;
     AnimationDrawable animationDrawable ;
 
-    //spinner arrays
-    String[] bookCategory = {"",
-            "Action and Adventure",
-            "Anthology",
-            "Biography/Autobiography",
-            "Classic",
-            "Comic and Graphic Novel",
-            "Crime and Detective",
-            "Drama",
-            "Essay",
-            "Fable",
-            "Fairy Tale",
-            "Fan-Fiction",
-            "Fantasy",
-            "Historical Fiction",
-            "Horror",
-            "Humor",
-            "Legend",
-            "Magical Realism",
-            "Memoir",
-            "Mystery",
-            "Mythology",
-            "Narrative Nonfiction",
-            "Periodicals",
-            "Poetry",
-            "Realistic Fiction",
-            "Reference Books",
-            "Romance",
-            "Satire",
-            "Science Fiction (Sci-Fi)",
-            "Self-help Book",
-            "Short Story",
-            "Speech",
-            "Suspense/Thriller"
-    };
-
+    //language spinner
     String[] language = {"",
             "English",
             "Sinhala",
@@ -86,13 +51,6 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
             }
         });
 
-
-        //category spinner
-        Spinner spinner = (Spinner) findViewById(R.id.category);
-        spinner.setOnItemSelectedListener(this);
-        ArrayAdapter ArrCate = new ArrayAdapter(this,android.R.layout.simple_spinner_item, bookCategory);
-        ArrCate.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(ArrCate);
 
         //language spinner
         Spinner spinner1 = (Spinner) findViewById(R.id.lang);

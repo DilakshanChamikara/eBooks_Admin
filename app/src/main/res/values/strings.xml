@@ -1,4 +1,40 @@
 <resources>
     <string name="app_name">eBooks Admin</string>
 
+    <array name="bookCategory">
+        <item></item>
+        <item>Action and Adventure</item>
+        <item>Anthology</item>
+        <item>Biography/Autobiography</item>
+        <item>Classic</item>
+        <item>Comic and Graphic Novel</item>
+        <item>Crime and Detective</item>
+        <item>Drama</item>
+        <item>Essay</item>
+        <item>Fable</item>
+        <item>Fairy Tale</item>
+        <item>Fan-Fiction</item>
+        <item>Fantasy</item>
+        <item>Historical Fiction</item>
+        <item>Horror</item>
+        <item>Humor</item>
+        <item>Legend</item>
+        <item>Magical Realism</item>
+        <item>Memoir</item>
+        <item>Mystery</item>
+        <item>Mythology</item>
+        <item>Narrative Nonfiction</item>
+        <item>Periodicals</item>
+        <item>Poetry</item>
+        <item>Realistic Fiction</item>
+        <item>Reference Books</item>
+        <item>Romance</item>
+        <item>Satire</item>
+        <item>Science Fiction (Sci-Fi)</item>
+        <item>Self-help Book</item>
+        <item>Short Story</item>
+        <item>Speech</item>
+        <item>Suspense/Thriller</item>
+    </array>
+
 </resources>
