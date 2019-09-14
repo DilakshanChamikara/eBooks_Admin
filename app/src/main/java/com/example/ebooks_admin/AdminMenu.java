@@ -77,9 +77,9 @@ public class AdminMenu extends AppCompatActivity {
 
     //logout function
     public void openAdminPanel(){
+        deleteCache(this);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-        deleteCache(this);
     }
 
     //delete function
