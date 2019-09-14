@@ -133,7 +133,7 @@ public class AdminLogin extends AppCompatActivity {
         String password = PWD.getText().toString();
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
-            Toast.makeText(AdminLogin.this, "Please Login the system.", Toast.LENGTH_LONG).show();
+            Toast.makeText(AdminLogin.this, "Please Login to the system.", Toast.LENGTH_LONG).show();
         }else {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
