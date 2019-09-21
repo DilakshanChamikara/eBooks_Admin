@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">eBooks Admin</string>
-
     <array name="bookCategory">
         <item></item>
         <item>Action and Adventure</item>
@@ -36,5 +34,21 @@
         <item>Speech</item>
         <item>Suspense/Thriller</item>
     </array>
+
+    <string name="app_name">eBooks Admin</string>
+
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="updateL">UPDATE</string>
+    <string name="deleteL">DELETE</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="cancel">Cancel</string>
+    <string name="cancelL">CANCEL</string>
+    <string name="add">Add</string>
+    <string name="logout">Logout</string>
+    <string name="choose">Choose</string>
+    <string name="back">Back</string>
 
 </resources>

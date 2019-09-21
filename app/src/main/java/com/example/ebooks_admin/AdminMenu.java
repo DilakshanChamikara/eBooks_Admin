@@ -10,7 +10,10 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
 
@@ -20,10 +23,14 @@ public class AdminMenu extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     AnimationDrawable animationDrawable ;
 
-    private Button Add, Logout, Delete;
+    private Button Add, Logout, UpdateDelete;
 
     //firebase
     private FirebaseAuth mAuth;
+    FirebaseDatabase database;
+    DatabaseReference menu;
+
+    FirebaseRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +57,12 @@ public class AdminMenu extends AppCompatActivity {
             }
         });
 
-        //For Delete Button
-        Delete = (Button) findViewById(R.id.sltdelete);
-        Delete.setOnClickListener(new View.OnClickListener() {
+        //For UpdateDelete Button
+        UpdateDelete = (Button) findViewById(R.id.sltupdatedelete);
+        UpdateDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDeleteDetails();
+                openUpdateDelete();
             }
         });
 
@@ -82,9 +89,9 @@ public class AdminMenu extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //delete function
-    public void openDeleteDetails(){
-        Intent intent = new Intent(this, AdminDeleteDetails.class);
+    //update delete function
+    public void openUpdateDelete(){
+        Intent intent = new Intent(this, BookList.class);
         startActivity(intent);
     }
 

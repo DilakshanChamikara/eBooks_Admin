@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ebooks_admin">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AdminDeleteDetails"></activity>
+        <activity android:name=".BookList"></activity>
+        <activity android:name=".AdminUpdateDeleteDetails" />
         <activity android:name=".AdminAddDetails" />
         <activity android:name=".AdminMenu" />
         <activity android:name=".AdminLogin" />
@@ -23,5 +22,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

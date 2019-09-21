@@ -51,7 +51,7 @@
                 android:orientation="vertical"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="40dp">
 
                 <Button
                     android:id="@+id/sltadd"
@@ -68,7 +68,7 @@
                     android:textSize="22sp" />
 
                 <Button
-                    android:id="@+id/sltupdate"
+                    android:id="@+id/sltupdatedelete"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
                     android:layout_marginStart="5dp"
@@ -77,23 +77,10 @@
                     android:layout_marginBottom="8dp"
                     android:background="#000000"
                     android:paddingLeft="50px"
-                    android:text="UPDATE DETAILS"
+                    android:text="UPDATE AND DELETE DETAILS"
                     android:textColor="#FFFFFF"
                     android:textSize="22sp" />
 
-                <Button
-                    android:id="@+id/sltdelete"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="5dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="#000000"
-                    android:paddingLeft="50px"
-                    android:text="DELETE DETAILS"
-                    android:textColor="#FFFFFF"
-                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/sltlogout"
