@@ -9,8 +9,9 @@
     <ProgressBar
         android:id="@+id/loading_books_pb"
         style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="59dp"
+        android:layout_height="59dp"
+        android:background="@drawable/progressbar"
         app:layout_constraintBottom_toTopOf="@+id/recyclerBookList"
         app:layout_constraintEnd_toStartOf="@+id/recyclerBookList"
         app:layout_constraintHorizontal_bias="0.5"
