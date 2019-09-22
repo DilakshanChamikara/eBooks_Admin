@@ -3,18 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp"
     app:cardElevation="5dp">
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -28,14 +23,14 @@
                     android:orientation="horizontal"
                     android:padding="5dp">
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/book__Title"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Sample"-->
-<!--                        android:textSize="20"-->
-<!--                        android:gravity="left|center"/>-->
+                    <TextView
+                        android:id="@+id/book__Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Sample"
+                        android:textSize="20dp"
+                        android:gravity="left|center"/>
 
                     <TextView
                         android:id="@+id/book__Num"
@@ -48,43 +43,87 @@
 
                 </LinearLayout>
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="50dp"-->
-<!--                    android:orientation="horizontal"-->
-<!--                    android:padding="5dp">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/book__Auther"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Sample"-->
-<!--                        android:textSize="20"-->
-<!--                        android:gravity="left|center"/>-->
+                    <TextView
+                        android:id="@+id/book__Author"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Sample"
+                        android:textSize="20dp"
+                        android:gravity="left|center"/>
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/book__Category"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Sample"-->
-<!--                        android:textSize="15dp"-->
-<!--                        android:gravity="center"/>-->
-<!--                    <TextView-->
-<!--                        android:id="@+id/book__Price"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:text="Sample"-->
-<!--                        android:textSize="15dp"-->
-<!--                        android:gravity="right|center"/>-->
+                    <TextView
+                        android:id="@+id/book__Category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Sample"
+                        android:textSize="15dp"
+                        android:gravity="center"/>
+                    <TextView
+                        android:id="@+id/book__FPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Sample"
+                        android:textSize="15dp"
+                        android:gravity="right|center"/>
 
-<!--                </LinearLayout>-->
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/book__Size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Sample"
+                        android:textSize="20dp"
+                        android:gravity="left|center"/>
+
+                    <TextView
+                        android:id="@+id/book__Intro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Sample"
+                        android:textSize="15dp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/book__Lang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Sample"
+                        android:textSize="15dp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/book__RPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Sample"
+                        android:textSize="15dp"
+                        android:gravity="right|center"/>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
         </LinearLayout>
-    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

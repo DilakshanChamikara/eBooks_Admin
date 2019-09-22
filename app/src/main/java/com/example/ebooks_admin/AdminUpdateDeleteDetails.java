@@ -1,109 +1,164 @@
 package com.example.ebooks_admin;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AdminUpdateDeleteDetails extends AppCompatActivity {
+import java.util.List;
 
-//    DatabaseReference ref;
-//    ArrayList<Book> list;
-//
-//    RecyclerView recyclerView;
-//    SearchView searchView;
+public class AdminUpdateDeleteDetails extends AppCompatActivity {
 
     private Button uUpdate, uDelete, uCancel;
     private EditText uISBN, uTITLE, uAUTHER, uSIZE, uINTRO, uRPrice, uFPrice, uIMAGE;
     private Spinner uCATEGORY, uLANG;
+
+    private String key;
+    private String auther, bookNo, bookTitle, category, fullPrice, intro, language, rentPrice, size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_update_delete_details);
 
-//        ref = FirebaseDatabase.getInstance().getReference().child("ebookadmin-a799f").child("books");
-//        recyclerView = findViewById(R.id.rv);
-       // searchView = findViewById(R.id.searchView);
+        //get the data form intent
+        key = getIntent().getStringExtra("key");
+        auther = getIntent().getStringExtra("auther");
+        bookNo = getIntent().getStringExtra("bookNo");
+        bookTitle = getIntent().getStringExtra("bookTitle");
+        category = getIntent().getStringExtra("category");
+        fullPrice = getIntent().getStringExtra("fullPrice");
+        intro = getIntent().getStringExtra("intro");
+        language = getIntent().getStringExtra("language");
+        rentPrice = getIntent().getStringExtra("rentPrice");
+        size = getIntent().getStringExtra("size");
 
 
         //find Ids
         uISBN = (EditText) findViewById(R.id.isbn_u);
+        uISBN.setText(bookNo);
+
         uTITLE = (EditText) findViewById(R.id.title_u);
+        uTITLE.setText(bookTitle);
+
         uAUTHER = (EditText) findViewById(R.id.auther_u);
+        uAUTHER.setText(auther);
+
         uSIZE = (EditText) findViewById(R.id.size_u);
+        uSIZE.setText(size);
+
         uINTRO = (EditText) findViewById(R.id.intro_u);
+        uINTRO.setText(intro);
+
         uRPrice = (EditText) findViewById(R.id.rPrice_u);
+        uRPrice.setText(rentPrice);
+
         uFPrice = (EditText) findViewById(R.id.fPrice_u);
+        uFPrice.setText(fullPrice);
 
         uCATEGORY = (Spinner) findViewById(R.id.category_u);
+        uCATEGORY.setSelection(getIndex_SpinnerItem(uCATEGORY, category));
+
         uLANG = (Spinner) findViewById(R.id.lang_u);
+        uLANG.setSelection(getIndex_SpinnerItem(uLANG, language));
 
         uUpdate = (Button) findViewById(R.id.UpdateBtn_u);
         uDelete = (Button)findViewById(R.id.DeleteBtn_u);
         uCancel = (Button) findViewById(R.id.CancelBtn_u);
 
+        //update button
+        uUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Book book = new Book();
+                book.setBookNo(uISBN.getText().toString());
+                book.setBookTitle(uTITLE.getText().toString());
+                book.setAuther(uAUTHER.getText().toString());
+                book.setSize(uSIZE.getText().toString());
+                book.setIntro(uINTRO.getText().toString());
+                book.setRentPrice(uRPrice.getText().toString());
+                book.setFullPrice(uFPrice.getText().toString());
+                book.setCategory(uCATEGORY.getSelectedItem().toString());
+                book.setLang(uLANG.getSelectedItem().toString());
+
+                new FirebaseDBHelper().updateBook(key, book, new FirebaseDBHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(List<Book> books, List<String> keys) {
+
+                    }
+
+                    @Override
+                    public void DataIsInserted() {
+
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+                        Toast.makeText(AdminUpdateDeleteDetails.this, "Book record has been updated successfully", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+
+                    }
+                });
+            }
+        });
+
+        //delete button
+        uDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new FirebaseDBHelper().deleteBook(key, new FirebaseDBHelper.DataStatus() {
+                    @Override
+                    public void DataIsLoaded(List<Book> books, List<String> keys) {
+
+                    }
+
+                    @Override
+                    public void DataIsInserted() {
+
+                    }
+
+                    @Override
+                    public void DataIsUpdated() {
+
+                    }
+
+                    @Override
+                    public void DataIsDeleted() {
+                        Toast.makeText(AdminUpdateDeleteDetails.this, "Record Successfully deleted.", Toast.LENGTH_LONG).show();
+                        finish();
+                        return;
+                    }
+                });
+            }
+        });
+
+        //cancel button
+        uCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                return;
+            }
+        });
+
     }
 
-
-//    //search bar
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//
-//        if(ref != null){
-//            ref.addValueEventListener(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                    if(dataSnapshot.exists()){
-//
-//                        list = new ArrayList<>();
-//
-//                        for(DataSnapshot ds : dataSnapshot.getChildren()){
-//                            list.add(ds.getValue(Book.class));
-//                        }
-//                        AdapterClass adapterClass = new AdapterClass(list);
-//                        recyclerView.setAdapter(adapterClass);
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError databaseError) {
-//                    Toast.makeText(AdminUpdateDeleteDetails.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
-//
-//        if(searchView != null){
-//            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//                @Override
-//                public boolean onQueryTextSubmit(String s) {
-//                    return false;
-//                }
-//
-//                @Override
-//                public boolean onQueryTextChange(String s) {
-//                    search(s);
-//                    return true;
-//                }
-//            });
-//        }
-//    }
-//
-//    //search function
-//    private void search(String str){
-//
-//        ArrayList<Book> myList = new ArrayList<>();
-//        for(Book object : list){
-//            if(object.getBookTitle().toLowerCase().contains(str.toLowerCase())){
-//                myList.add(object);
-//            }
-//        }
-//
-//        AdapterClass adapterClass = new AdapterClass(myList);
-//        recyclerView.setAdapter(adapterClass);
-//    }
+    private  int getIndex_SpinnerItem(Spinner spinner, String item){
+        int index = 0;
+        for (int i = 0; i<spinner.getCount(); i++){
+            if(spinner.getItemAtPosition(i).equals(item)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.example.ebooks_admin.Model;
+package com.example.ebooks_admin;
 
 //search bar
 public class Book {
