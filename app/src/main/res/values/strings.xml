@@ -51,4 +51,11 @@
     <string name="choose">Choose</string>
     <string name="back">Back</string>
 
+    <array name="bookLanguage">
+        <item></item>
+        <item>English</item>
+        <item>Sinhala</item>
+        <item>Tamil</item>
+    </array>
+
 </resources>

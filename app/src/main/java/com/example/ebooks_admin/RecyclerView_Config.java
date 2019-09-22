@@ -64,7 +64,7 @@ public class RecyclerView_Config {
                     intent.putExtra("category", mCategory.getText().toString());
                     intent.putExtra("fullPrice", mFullPrice.getText().toString());
                     intent.putExtra("intro", mIntro.getText().toString());
-                    intent.putExtra("language", mLang.getText().toString());
+                    intent.putExtra("lang", mLang.getText().toString());
                     intent.putExtra("rentPrice", mRprice.getText().toString());
                     intent.putExtra("size", mSize.getText().toString());
 

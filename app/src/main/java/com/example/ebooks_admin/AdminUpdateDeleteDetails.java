@@ -33,7 +33,7 @@ public class AdminUpdateDeleteDetails extends AppCompatActivity {
         category = getIntent().getStringExtra("category");
         fullPrice = getIntent().getStringExtra("fullPrice");
         intro = getIntent().getStringExtra("intro");
-        language = getIntent().getStringExtra("language");
+        language = getIntent().getStringExtra("lang");
         rentPrice = getIntent().getStringExtra("rentPrice");
         size = getIntent().getStringExtra("size");
 

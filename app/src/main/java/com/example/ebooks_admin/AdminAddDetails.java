@@ -1,39 +1,45 @@
 package com.example.ebooks_admin;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 
 public class AdminAddDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button cnl, AddBtn, ClearBtn;
-    private EditText ISBN, TITLE, AUTHER, SIZE, INTRO, RPrice, FPrice, IMAGE;
+    private EditText ISBN, TITLE, AUTHER, SIZE, INTRO, RPrice, FPrice;
     private Spinner CATEGORY, LANG;
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private Button mButtonChooseImage;
     private ImageView mImageView;
-    private Uri mImageUri;
+    public Uri mImageUri;
     private StorageTask addTask;
 
     private StorageReference StorageRef;
@@ -106,11 +112,11 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
 
 
         //language spinner
-        Spinner spinner1 = (Spinner) findViewById(R.id.lang);
-        spinner1.setOnItemSelectedListener(this);
-        ArrayAdapter ArrLang = new ArrayAdapter(this, android.R.layout.simple_spinner_item, language);
-        ArrLang.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner1.setAdapter(ArrLang);
+//        Spinner spinner1 = (Spinner) findViewById(R.id.lang);
+//        spinner1.setOnItemSelectedListener(this);
+//        ArrayAdapter ArrLang = new ArrayAdapter(this, android.R.layout.simple_spinner_item, language);
+//        ArrLang.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner1.setAdapter(ArrLang);
 
 
         //background Animation
@@ -122,13 +128,15 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
 
 
         //image choose button
-//        mButtonChooseImage = (Button) findViewById(R.id.choose);
-//        mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                openFileChooser();
-//            }
-//        });
+        mImageView = (ImageView)findViewById(R.id.chooseImage);
+
+        mButtonChooseImage = (Button) findViewById(R.id.choose);
+        mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFileChooser();
+            }
+        });
 
    }
 
@@ -160,32 +168,32 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
 
 
     //image choose button
-//    private void openFileChooser(){
-//        Intent intent = new Intent();
-//        intent.setType("image/*");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);
-//        startActivityForResult(intent, PICK_IMAGE_REQUEST);
-//    }
-//
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
-//            mImageUri = data.getData();
-//
-//            //Picasso.with(this).load(mImageUri).into(mImageUri);
-//            mImageView.setImageURI(mImageUri);
-//        }
-//    }
+    private void openFileChooser(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
+            mImageUri = data.getData();
+
+//            Picasso.with(this).load(mImageUri).into(mImageUri);
+            mImageView.setImageURI(mImageUri);
+        }
+    }
 
 
     //get file extension
-//    private String getFileExtension(Uri uri){
-//        ContentResolver cr = getContentResolver();
-//        MimeTypeMap mime = MimeTypeMap.getSingleton();
-//        return mime.getExtensionFromMimeType(cr.getType(uri));
-//    }
+    private String getFileExtension(Uri uri){
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(uri));
+    }
 
 
     //add button
@@ -222,15 +230,32 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
         }
     }
 
-//    private void addFile(){
-//
-//        StorageReference fileReference = StorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
-//
+    private void addFile(){
+
+        StorageReference fileReference = StorageRef.child(System.currentTimeMillis() + "." + getFileExtension(mImageUri));
+
+        fileReference.putFile(mImageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Get a URL to the uploaded content
+                        //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                        Toast.makeText(AdminAddDetails.this, "Image upload successfull", Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        // ...
+                    }
+                });
+
 //        addTask = fileReference.putFile(mImageUri)
 //                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 //                    @Override
 //                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//
+//                        Toast.makeText(AdminAddDetails.this, "Image upload successfull", Toast.LENGTH_LONG).show();
 //                    }
 //                })
 //                .addOnFailureListener(new OnFailureListener() {
@@ -239,7 +264,6 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
 //                        Toast.makeText(AdminAddDetails.this, e.getMessage(), Toast.LENGTH_LONG).show();
 //                    }
 //                });
-//    }
 
-
+    }
 }
