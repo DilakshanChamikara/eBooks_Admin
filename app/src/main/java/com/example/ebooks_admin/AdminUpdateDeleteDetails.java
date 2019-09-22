@@ -18,7 +18,7 @@ public class AdminUpdateDeleteDetails extends AppCompatActivity {
     private Spinner uCATEGORY, uLANG;
 
     private String key;
-    private String auther, bookNo, bookTitle, category, fullPrice, intro, language, rentPrice, size;
+    private String auther, bookNo, bookTitle, category, fullPrice, intro, lang, rentPrice, size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class AdminUpdateDeleteDetails extends AppCompatActivity {
         category = getIntent().getStringExtra("category");
         fullPrice = getIntent().getStringExtra("fullPrice");
         intro = getIntent().getStringExtra("intro");
-        language = getIntent().getStringExtra("lang");
+        lang = getIntent().getStringExtra("lang");
         rentPrice = getIntent().getStringExtra("rentPrice");
         size = getIntent().getStringExtra("size");
 
@@ -64,7 +64,7 @@ public class AdminUpdateDeleteDetails extends AppCompatActivity {
         uCATEGORY.setSelection(getIndex_SpinnerItem(uCATEGORY, category));
 
         uLANG = (Spinner) findViewById(R.id.lang_u);
-        uLANG.setSelection(getIndex_SpinnerItem(uLANG, language));
+        uLANG.setSelection(getIndex_SpinnerItem(uLANG, lang));
 
         uUpdate = (Button) findViewById(R.id.UpdateBtn_u);
         uDelete = (Button)findViewById(R.id.DeleteBtn_u);

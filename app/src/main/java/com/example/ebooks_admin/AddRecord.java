@@ -2,7 +2,7 @@ package com.example.ebooks_admin;
 
 public class AddRecord {
 
-    private String BookNo, BookTitle, Auther, Size, Intro, RentPrice, FullPrice, Category, Language, ImageURI ;
+    private String BookNo, BookTitle, Auther, Size, Intro, RentPrice, FullPrice, Category, Lang, ImageURI ;
 
     //default constructor
     public AddRecord(){
@@ -10,7 +10,7 @@ public class AddRecord {
     }
 
     //constructor
-    public AddRecord(String bookNo, String bookTitle, String auther, String size, String intro, String rentPrice, String fullPrice, String category, String language) {
+    public AddRecord(String bookNo, String bookTitle, String auther, String size, String intro, String rentPrice, String fullPrice, String category, String lang) {
         BookNo = bookNo;
         BookTitle = bookTitle;
         Auther = auther;
@@ -19,7 +19,7 @@ public class AddRecord {
         RentPrice = rentPrice;
         FullPrice = fullPrice;
         Category = category;
-        Language = language;
+        Lang = lang;
 //        ImageURI = imageUri;
     }
 
@@ -56,11 +56,11 @@ public class AddRecord {
         return Category;
     }
 
-    public String getLanguage() {
-        return Language;
+    public String getLang() {
+        return Lang;
     }
 
-//    public String getImageURI() {
+    //    public String getImageURI() {
 //        return ImageURI;
 //    }
 }

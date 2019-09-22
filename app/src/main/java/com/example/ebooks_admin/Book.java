@@ -9,7 +9,7 @@ public class Book {
     }
 
     //constructor
-    public Book(String bookNo, String bookTitle, String category, String fullPrice, String auther, String rentPrice, String size, String intro, String language, String Image) {
+    public Book(String bookNo, String bookTitle, String category, String fullPrice, String auther, String rentPrice, String size, String intro, String lang, String Image) {
         this.bookNo = bookNo;
         this.bookTitle = bookTitle;
         this.category = category;
@@ -18,7 +18,7 @@ public class Book {
         this.rentPrice = rentPrice;
         this.size = size;
         this.intro = intro;
-        this.lang = language;
+        this.lang = lang;
         this.image = Image;
     }
 
