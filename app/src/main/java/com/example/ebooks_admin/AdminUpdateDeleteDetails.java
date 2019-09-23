@@ -1,13 +1,24 @@
 package com.example.ebooks_admin;
 
+import android.content.ContentResolver;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -16,6 +27,13 @@ public class AdminUpdateDeleteDetails extends AppCompatActivity {
     private Button uUpdate, uDelete, uCancel;
     private EditText uISBN, uTITLE, uAUTHER, uSIZE, uINTRO, uRPrice, uFPrice, uIMAGE;
     private Spinner uCATEGORY, uLANG;
+    private static final int PICK_IMAGE_REQUEST = 1;
+    public Uri mImageUri;
+    private ImageView mImageView;
+    private Button mButtonChooseImage;
+
+    private StorageReference StorageRef;
+    private DatabaseReference DbRefAdmin;
 
     private String key;
     private String auther, bookNo, bookTitle, category, fullPrice, intro, lang, rentPrice, size;
@@ -24,6 +42,10 @@ public class AdminUpdateDeleteDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_update_delete_details);
+
+        //db
+        StorageRef = FirebaseStorage.getInstance().getReference("books");
+        DbRefAdmin = FirebaseDatabase.getInstance().getReference("books");
 
         //get the data form intent
         key = getIntent().getStringExtra("key");
@@ -148,6 +170,17 @@ public class AdminUpdateDeleteDetails extends AppCompatActivity {
             }
         });
 
+        //image choose button
+        mImageView = (ImageView)findViewById(R.id.chooseImage_u);
+
+        mButtonChooseImage = (Button) findViewById(R.id.choose_u);
+        mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openFileChooser();
+            }
+        });
+
     }
 
     private  int getIndex_SpinnerItem(Spinner spinner, String item){
@@ -160,5 +193,33 @@ public class AdminUpdateDeleteDetails extends AppCompatActivity {
         }
         return index;
     }
+
+    //image choose button
+    private void openFileChooser(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
+            mImageUri = data.getData();
+
+//            Picasso.get(this).load(mImageUri).into(mImageUri);
+            mImageView.setImageURI(mImageUri);
+        }
+    }
+
+    //get file extension
+    private String getFileExtension(Uri uri){
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(uri));
+    }
+
 
 }

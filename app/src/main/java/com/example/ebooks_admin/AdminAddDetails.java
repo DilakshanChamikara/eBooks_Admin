@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -25,9 +26,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 
 public class AdminAddDetails extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -89,6 +92,7 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
 //                    addFile();
 //                }
                 addRecord();
+//                addFile();
             }
         });
 
@@ -182,7 +186,7 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
         if(requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null){
             mImageUri = data.getData();
 
-//            Picasso.with(this).load(mImageUri).into(mImageUri);
+//            Picasso.get(this).load(mImageUri).into(mImageUri);
             mImageView.setImageURI(mImageUri);
         }
     }
@@ -240,7 +244,19 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Get a URL to the uploaded content
                         //Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                        Toast.makeText(AdminAddDetails.this, "Image upload successfull", Toast.LENGTH_LONG).show();
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                setProgress(0);
+                            }
+                        }, 5000);
+                        //Toast.makeText(AdminAddDetails.this, "Image upload successfull", Toast.LENGTH_LONG).show();
+                        ImageUpload imageUpload = new ImageUpload();
+                        imageUpload.getmImageUrl().toString().trim();
+                        String uploadId = DbRefAdmin.push().getKey();
+                        DbRefAdmin.child(uploadId).setValue(imageUpload);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -248,22 +264,17 @@ public class AdminAddDetails extends AppCompatActivity implements AdapterView.On
                     public void onFailure(@NonNull Exception exception) {
                         // Handle unsuccessful uploads
                         // ...
+                        Toast.makeText(AdminAddDetails.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double progress = (100.00 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        Toast.makeText(AdminAddDetails.this, (int) progress, Toast.LENGTH_LONG).show();
                     }
                 });
 
-//        addTask = fileReference.putFile(mImageUri)
-//                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                        Toast.makeText(AdminAddDetails.this, "Image upload successfull", Toast.LENGTH_LONG).show();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(AdminAddDetails.this, e.getMessage(), Toast.LENGTH_LONG).show();
-//                    }
-//                });
-
     }
+
 }
