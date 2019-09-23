@@ -9,12 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BookList"></activity>
-        <activity android:name=".AdminUpdateDeleteDetails" />
-        <activity android:name=".AdminAddDetails" />
-        <activity android:name=".AdminMenu" />
-        <activity android:name=".AdminLogin" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".BookList"
+            android:label="Book list"></activity>
+
+        <activity android:name=".AdminUpdateDeleteDetails"
+            android:label="Update and Delete Details"/>
+
+        <activity android:name=".AdminAddDetails"
+            android:label="Add details"/>
+
+        <activity android:name=".AdminMenu"
+            android:label="Menu"/>
+
+        <activity android:name=".AdminLogin"
+            android:label="Login"/>
+
+        <activity android:name=".MainActivity"
+            android:label="eBooks Admin">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
